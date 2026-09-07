@@ -11,7 +11,6 @@
 <link rel="canonical" href="https://julianrobert04.github.io/canada-trip/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%23070C12'/%3E%3Cpath d='M12 46h9l9-9h9' stroke='%23FF5E67' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M30 37h13l9-9h0' stroke='%233ED08E' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='13' cy='46' r='5.5' fill='%23070C12' stroke='%23FF5E67' stroke-width='4.5'/%3E%3Ccircle cx='51' cy='28' r='5.5' fill='%23070C12' stroke='%236BB9EF' stroke-width='4.5'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="https://julianrobert04.github.io/canada-trip/og.png">
-
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Four Stops North">
 <meta property="og:url" content="https://julianrobert04.github.io/canada-trip/">
@@ -30,7 +29,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
 <style>
-/* baseline the artifact host used to provide */
 html{-webkit-text-size-adjust:100%}
 body{margin:0;min-height:100vh}
 img,svg,canvas{max-width:100%}
@@ -49,6 +47,7 @@ img,svg,canvas{max-width:100%}
   --line:#D3DBE2; --line-soft:#E3E9EE;
   --to:#BE0C26; --an:#0F6640; --mt:#AE5602; --qc:#12587F;
   --warn:#93430F; --warn-bg:#F8E9DB;
+  --green:#186B45; --green-bg:#E7F2EC;
   --leg:var(--to);
 
   --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -63,6 +62,7 @@ img,svg,canvas{max-width:100%}
     --line:#222E3A; --line-soft:#1A242E;
     --to:#FF5E67; --an:#3ED08E; --mt:#FFA23D; --qc:#6BB9EF;
     --warn:#E8A96E; --warn-bg:#241C13;
+    --green:#4CD08E; --green-bg:#12241B;
   }
 }
 :root[data-theme="dark"]{
@@ -71,6 +71,7 @@ img,svg,canvas{max-width:100%}
   --line:#222E3A; --line-soft:#1A242E;
   --to:#FF5E67; --an:#3ED08E; --mt:#FFA23D; --qc:#6BB9EF;
   --warn:#E8A96E; --warn-bg:#241C13;
+    --green:#4CD08E; --green-bg:#12241B;
 }
 *{box-sizing:border-box}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -203,6 +204,7 @@ nav{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--paper) 8
   background:color-mix(in srgb,var(--leg) 9%,transparent)}
 .chip.book{color:var(--warn);background:var(--warn-bg);border-color:color-mix(in srgb,var(--warn) 32%,transparent)}
 .chip.local{background:var(--leg);color:var(--paper);border-color:var(--leg);letter-spacing:.15em}
+.chip.nature{color:var(--green);background:var(--green-bg);border-color:color-mix(in srgb,var(--green) 38%,transparent)}
 .pick{width:34px;height:34px;border-radius:4px;border:1px solid var(--line);background:transparent;
   color:var(--ink-3);cursor:pointer;font:700 16px/1 var(--sans);display:grid;place-items:center;padding:0;
   transition:transform .12s,background .12s}
@@ -293,6 +295,7 @@ footer{padding:44px 0 68px;font-family:var(--serif);font-size:14px;color:var(--i
           <path d="M300 46 L432 46 L458 72 L500 72" stroke="#3ED08E"/>
           <path d="M500 72 L616 72 L652 36 L700 36" stroke="#FFA23D"/>
           <path class="tail" d="M700 36 L764 36" stroke="#6BB9EF" stroke-width="4" stroke-dasharray="2 12"/>
+          <path class="tail" d="M100 100 L44 100" stroke="#4CD08E" stroke-width="4" stroke-dasharray="2 11"/>
         </g>
         <g class="seglbl" font-family="Archivo, sans-serif" font-size="11.5" font-weight="700"
            letter-spacing="1.9" fill="#8FA0B0" text-anchor="middle">
@@ -300,8 +303,10 @@ footer{padding:44px 0 68px;font-family:var(--serif);font-size:14px;color:var(--i
           <text x="400" y="30">CAR · 6H30</text>
           <text x="565" y="56">TRAIN · 3H15</text>
           <text x="762" y="20" text-anchor="end" fill="#6BB9EF">HOME 9 JAN</text>
+          <text x="44" y="80" fill="#4CD08E">NIAGARA</text>
         </g>
         <g stroke-width="5" fill="#070C12">
+          <circle cx="44" cy="100" r="8" stroke="#4CD08E" stroke-width="4"/>
           <circle cx="100" cy="100" r="12" stroke="#FF5E67"/>
           <circle cx="300" cy="46" r="12" stroke="#3ED08E"/>
           <circle cx="500" cy="72" r="12" stroke="#FFA23D"/>
@@ -389,13 +394,13 @@ footer{padding:44px 0 68px;font-family:var(--serif);font-size:14px;color:var(--i
 </section>
 
 <footer class="wrap">
-  <p>Prices are Canadian dollars and approximate; temperatures are typical seasonal ranges, not forecasts. Every day carries one <em>Local pick</em> &mdash; the offbeat sight locals would send you to rather than the headline attraction; the filter up top pulls all seventeen into one list. Tap the square beside anything you want to do and it stays marked on this device &mdash; the <em>Picked</em> filter then shows just your shortlist.</p>
+  <p>Prices are Canadian dollars and approximate; temperatures are typical seasonal ranges, not forecasts. Every day carries one <em>Local pick</em> &mdash; the offbeat sight locals would send you to rather than the headline attraction; the filter up top pulls all seventeen into one list. <em>Parks &amp; forests</em> does the same for the green, flat, safe options &mdash; there is at least one every day. Tap the square beside anything you want to do and it stays marked on this device &mdash; the <em>Picked</em> filter then shows just your shortlist.</p>
 </footer>
 
 <script>
 const DAYS=[
 {leg:"toronto",city:"Toronto",dates:"24&ndash;28 December",mode:"Subway, streetcar and Uber. No car.",
- legnote:"Four nights to get over the flight, over the jet lag and into the cold. Toronto is the flattest, warmest-indoors city on the list &mdash; the subway is heated, the PATH tunnels run 30&nbsp;km under downtown, and almost every museum has an elevator. Christmas Day is the one genuinely awkward day, so it has its own plan below.",
+ legnote:"Four nights to get over the flight, over the jet lag and into the cold. Toronto is the flattest, warmest-indoors city on the list &mdash; the subway is heated, the PATH tunnels run 30&nbsp;km under downtown, and almost every museum has an elevator. Christmas Day is the one genuinely awkward day, so it has its own plan below, and Day 03 has absorbed everything the city offers because Day 04 goes to Niagara.",
  days:[
  {n:1,dow:"Thursday",date:"24 Dec",title:"Land, thaw out, Christmas Eve",
   shape:"Everything closes early today. Do one outdoor thing while it is light, buy the food for tomorrow, and go to bed early &mdash; you have sixteen days left.",
@@ -405,7 +410,8 @@ const DAYS=[
    {t:"Skating at Nathan Phillips Square",d:"The free public rink in front of City Hall, under the TORONTO sign. Skate rental on site, around $12. Twenty minutes is plenty on day one, and there is a warm room for whoever would rather watch.",c:["Subway","Outdoor","$","Easy pace"],g:["outdoor","easy","cheap"]},
    {t:"St. Lawrence Market",d:"The indoor food market, and the practical stop of the day: peameal bacon sandwiches at Carousel Bakery for lunch, then everything you need for tomorrow's dinner. Closes early today, so go before the afternoon.",c:["Subway","Indoor","$$","Stroller OK"],g:["indoor","stroller","easy"]},
    {t:"Eaton Centre and the PATH",d:"The no-effort version if the flight beats you up: a mall the size of a neighbourhood, connected to 30&nbsp;km of underground walkway. Flat, warm, stroller-perfect, and you can cross half of downtown without a coat.",c:["Subway","Indoor","Free","Stroller OK"],g:["indoor","stroller","easy","cheap"]},
-   {t:"Graffiti Alley, off Queen West",d:"A kilometre of continuously repainted street art down Rush Lane, behind the Queen Street shops. Free, thirty minutes, and the least museum-like thing in Toronto &mdash; the teenager will take more photographs here than at the CN Tower.",c:["Local pick","Streetcar","Outdoor","Free"],g:["outdoor","teen","cheap","easy"]}
+   {t:"Graffiti Alley, off Queen West",d:"A kilometre of continuously repainted street art down Rush Lane, behind the Queen Street shops. Free, thirty minutes, and the least museum-like thing in Toronto &mdash; the teenager will take more photographs here than at the CN Tower.",c:["Local pick","Streetcar","Outdoor","Free"],g:["outdoor","teen","cheap","easy"]},
+   {t:"Corktown Common",d:"A hill park on the old rail lands, ten minutes on foot from the Distillery District: a boardwalk out over a wetland, marsh grass standing frozen in the ice, and the skyline behind it. Flat, paved, free, and it turns the Distillery trip into a real walk without adding any travel.",c:["Nature","Walk","Outdoor","Free","Stroller OK","Easy pace"],g:["outdoor","nature","stroller","easy","cheap"]}
   ],
   eat:[
    {p:"$$",n:"Richmond Station",d:"Downtown, seasonal Canadian, genuinely good and not stuffy. Reserve now &mdash; Christmas Eve seatings are short and go fast."},
@@ -420,7 +426,8 @@ const DAYS=[
    {t:"Tobogganing at Riverdale Park East",d:"A free, steep, wide hill with the best skyline view in the city, and half of Toronto on it. Bring the sleds you bought yesterday. This is the cheap version of tubing and the kids will not know the difference.",c:["Uber","Outdoor","Free"],g:["outdoor","cheap"]},
    {t:"Natrel Rink, Harbourfront",d:"A covered waterfront rink with rentals and a café attached, so the grandparents get a window seat and a coffee while everyone else falls over. Calmer than City Hall on a holiday.",c:["Streetcar","Outdoor","$","Easy pace"],g:["outdoor","easy","cheap"]},
    {t:"Cinema at Scotiabank Theatre",d:"Cineplex runs a full Christmas Day schedule and the big downtown multiplex is a five-minute walk from the aquarium. The obvious teenager-approved plan if the wind is coming off the lake.",c:["Walk","Indoor","$$"],g:["indoor","easy"]},
-   {t:"Allan Gardens Conservatory",d:"A Victorian glass palace from 1910 full of palms, orchids and cacti, kept at tropical heat, free to walk into, and open every day of the year &mdash; including today, when almost nothing else is. Twenty minutes from downtown, flat, and the warmest room in the city.",c:["Local pick","Uber","Indoor","Free","Stroller OK","Easy pace"],g:["indoor","stroller","easy","cheap"]}
+   {t:"Allan Gardens Conservatory",d:"A Victorian glass palace from 1910 full of palms, orchids and cacti, kept at tropical heat, free to walk into, and open every day of the year &mdash; including today, when almost nothing else is. Twenty minutes from downtown, flat, and the warmest room in the city.",c:["Local pick","Uber","Indoor","Free","Stroller OK","Easy pace"],g:["indoor","stroller","easy","cheap"]},
+   {t:"Rouge National Urban Park",d:"Canada&rsquo;s only national urban park &mdash; 79 km&sup2; of forest, river valley and marshland at the eastern edge of the city, and open every day of the year including this one. The trails are marked and well used; stay on them, go in daylight, and be back before it darkens at a quarter to five. Free.",c:["Nature","Uber 40 min","Outdoor","Free","Easy pace"],g:["outdoor","nature","easy","cheap"]}
   ],
   eat:[
    {p:"$",n:"Dim sum on Spadina",d:"Rol San or Dim Sum King. Chinese restaurants are the classic Canadian Christmas Day answer, they are open, and they can seat nine at one round table."},
@@ -428,34 +435,39 @@ const DAYS=[
    {p:"$",n:"Cook at the apartment",d:"Honestly the best plan. You bought the food yesterday, there is a kitchen, and the baby sleeps in the next room. Do the restaurant thing tomorrow."}
   ]},
  {n:3,dow:"Saturday",date:"26 Dec",title:"Boxing Day",
-  shape:"The city reopens all at once and everybody goes shopping. Pick one museum and one thing outdoors, and treat the sales as optional.",
+  shape:"The one fully open day in Toronto, so the whole city is on the table &mdash; more than you can do in a day. Filter it down to one museum and one thing outdoors rather than trying to read all of it, and treat the sales as optional.",
   opts:[
    {t:"Royal Ontario Museum",d:"Dinosaurs, Egyptian mummies, a bat cave you walk through. Elevators everywhere, benches everywhere, three hours without anyone complaining. The subway platform at Museum station is decorated like a tomb, which is a free bonus.",c:["Subway","Indoor","$$$","Stroller OK","Easy pace"],g:["indoor","stroller","easy"]},
    {t:"Hockey Hall of Fame",d:"In an old bank vault building at Yonge and Front. Shoot pucks at a simulated NHL goalie, hold the Stanley Cup. Ninety focused minutes for the nine- and sixteen-year-old.",c:["Subway","Indoor","$$"],g:["indoor","teen","easy"]},
    {t:"CN Tower",d:"Timed tickets, glass floor, the whole lake laid out below. EdgeWalk is closed for the winter. Only worth the money on a clear day &mdash; check the sky before you buy, or you are paying to stand inside a cloud.",c:["Subway","Indoor","$$$","Book ahead"],g:["indoor","easy"]},
    {t:"Boxing Day sales",d:"Eaton Centre is on the subway and genuinely packed &mdash; go early or not at all. Yorkdale is calmer per square metre and a 25-minute ride north. Good teen currency; skip it entirely if nobody cares.",c:["Subway","Indoor","Varies"],g:["indoor","teen"]},
    {t:"Kensington Market",d:"Twenty minutes of walking through a scruffy, colourful few blocks of vintage shops and food counters, then eat from three places at once. Best done as the lunch half of another plan.",c:["Streetcar","Outdoor","$"],g:["outdoor","cheap"]},
-   {t:"The winter ferry to Ward&rsquo;s Island",d:"The island ferry runs all year, and in winter it pushes through sheet ice with about nine people aboard. Fifteen minutes across, a frozen boardwalk, the entire skyline behind you, and no crowds anywhere &mdash; the exact opposite of a Boxing Day mall. Dress for wind off open water.",c:["Local pick","Ferry","Outdoor","$"],g:["outdoor","cheap"]}
+   {t:"The winter ferry to Ward&rsquo;s Island",d:"The island ferry runs all year, and in winter it pushes through sheet ice with about nine people aboard. Fifteen minutes across, a frozen boardwalk, the entire skyline behind you, and no crowds anywhere &mdash; the exact opposite of a Boxing Day mall. Dress for wind off open water.",c:["Local pick","Ferry","Outdoor","$"],g:["outdoor","cheap"]},
+   {t:"Casa Loma",d:"A genuine 98-room castle on the hill above downtown, with towers, secret stairs, an 800-foot tunnel and a garage of old cars. Winter lighting in the conservatory. There is an elevator; the tower stairs are steep and narrow, so send the teenager up those alone.",c:["Uber","Indoor","$$$","Stroller OK"],g:["indoor","stroller","easy"]},
+   {t:"Art Gallery of Ontario",d:"The Group of Seven landscape rooms are the most Canadian thing you can look at indoors, and the Frank Gehry staircase is worth the visit on its own. Free admission for under-25s, which covers the teenager.",c:["Streetcar","Indoor","$$","Stroller OK","Easy pace"],g:["indoor","stroller","easy"]},
+   {t:"Toronto Marlies hockey",d:"The Leafs&rsquo; farm team at Coca-Cola Coliseum: real, fast, loud AHL hockey at a fraction of an NHL ticket, with weekend afternoon starts and family pricing. Check the December schedule &mdash; if there is a home game, take it.",c:["Streetcar","Indoor","$$","Book ahead"],g:["indoor","teen","easy"]},
+   {t:"Evergreen Brick Works",d:"A derelict brick factory in the Don Valley, half-ruined and covered in murals, now a public space with flooded skating ponds, flat boardwalk trails through the old quarry and a caf&eacute; in one of the kilns. Fifteen minutes from downtown and almost entirely locals.",c:["Nature","Uber","Mixed","Free","Stroller OK","Easy pace"],g:["outdoor","indoor","nature","stroller","easy","cheap"]}
   ],
   eat:[
    {p:"$",n:"Seven Lives, Kensington",d:"Baja fish tacos from a counter, eaten standing up. Cheap, excellent, and the fastest lunch on this list."},
    {p:"$$",n:"Pai Northern Thai Kitchen",d:"Loud, dark, always full, and the best-value proper dinner downtown. Book a table of nine well ahead."},
    {p:"$$$",n:"Byblos",d:"Eastern Mediterranean sharing plates on Duncan St. A step up in price and polish, and the sharing format works for a table with a teenager and two grandparents on it."}
   ]},
- {n:4,dow:"Sunday",date:"27 Dec",title:"Last full Toronto day &mdash; pick two",
-  shape:"You have done the obligatory sights. Today is the one to spend on whatever the group actually liked, plus the Distillery lights after dark if you missed them on Christmas Eve.",
+ {n:4,dow:"Sunday",date:"27 Dec",title:"Niagara Falls",
+  shape:"The one long day of the Toronto leg, and worth it: in winter the spray freezes onto everything downstream, so the gorge, the railings and every tree along the parkway are glazed in ice. Go early, be back after the lights come on.",
+  note:{t:"Getting there without a car",b:"Niagara is about 130 km from Toronto and you have no car this week. Easiest for nine: a guided coach day tour with a downtown pickup &mdash; one price, warm bus, no parking. Otherwise GO Transit runs a train and bus route to Niagara Falls in roughly two hours; check the current holiday timetable. Either way this is a 10 to 12 hour day, which is a lot for a one-year-old and two over-60s. If it is too much, everything Toronto had for today has moved to Day 03."},
   opts:[
-   {t:"Casa Loma",d:"A genuine 98-room castle on the hill above downtown, with towers, secret stairs, an 800-foot tunnel and a garage of old cars. Winter lighting in the conservatory. There is an elevator; the tower stairs are steep and narrow, so send the teenager up those alone.",c:["Uber","Indoor","$$$","Stroller OK"],g:["indoor","stroller","easy"]},
-   {t:"Toronto Marlies hockey",d:"The Leafs' farm team at Coca-Cola Coliseum: real, fast, loud AHL hockey at a fraction of an NHL ticket, with weekend afternoon starts and family pricing. Check the December schedule &mdash; if there is a home game, take it.",c:["Streetcar","Indoor","$$","Book ahead"],g:["indoor","teen","easy"]},
-   {t:"Distillery Winter Village after dark",d:"If you only got a rushed hour on the 24th, this is the night. The lights are the entire point and they do not work in daylight. Go at 5pm when it is already fully dark.",c:["Uber","Outdoor","$"],g:["outdoor","cheap"]},
-   {t:"Art Gallery of Ontario",d:"The Group of Seven landscape rooms are the most Canadian thing you can look at indoors, and the Frank Gehry staircase is worth the visit on its own. Free admission for under-25s, which covers the teenager.",c:["Streetcar","Indoor","$$","Stroller OK","Easy pace"],g:["indoor","stroller","easy"]},
-   {t:"High Park",d:"Wide flat plowed paths, a frozen pond, and almost nobody there in December. The gentle walk for whoever wants one, at the pace the baby and the grandparents set.",c:["Subway","Outdoor","Free","Easy pace"],g:["outdoor","easy","cheap"]},
-   {t:"Evergreen Brick Works",d:"A derelict brick factory in the Don Valley, half-ruined and covered in murals, now a public space with flooded skating ponds, flat boardwalk trails through the old quarry and a café in one of the kilns. Fifteen minutes from downtown and almost entirely locals.",c:["Local pick","Uber","Mixed","Free","Stroller OK","Easy pace"],g:["outdoor","indoor","stroller","easy","cheap"]}
+   {t:"Horseshoe Falls from Table Rock",d:"Almost 3,000 tonnes of water a second going over a 57-metre drop, thirty metres from where you stand. In winter the mist freezes on contact and coats the whole rim in ice. Table Rock puts you at the brink with a heated building right behind you, so you can look, thaw, and look again. Free to stand there.",c:["Walk","Outdoor","Free","Stroller OK"],g:["outdoor","stroller","easy","cheap"]},
+   {t:"Journey Behind the Falls",d:"Lifts down through the bedrock to tunnels cut behind the water, ending at two portals directly under the falling sheet. Open all winter, indoors the whole way, and the single thing here the nine-year-old will not stop talking about. Timed tickets.",c:["Walk","Indoor","$$","Stroller OK","Book ahead"],g:["indoor","stroller","kid","easy"]},
+   {t:"Niagara Parks Floral Showhouse",d:"A small glasshouse five minutes upriver from the falls: orchids, palms, banana trees and songbirds at tropical temperature, for a few dollars. Standing in humid green air with a frozen gorge outside the glass is the strangest and best twenty minutes of the day.",c:["Nature","Walk","Indoor","$","Stroller OK","Easy pace"],g:["indoor","nature","stroller","easy","cheap"]},
+   {t:"Winter Festival of Lights",d:"Millions of lights strung along the parkway and through Dufferin Islands from November into January, free to drive or walk through, and best from about five o&rsquo;clock when it is properly dark. The reason to stay into the evening rather than leaving at four.",c:["Walk","Outdoor","Free","Stroller OK"],g:["outdoor","stroller","easy","cheap"]},
+   {t:"Niagara Glen Nature Reserve",d:"Four kilometres of marked trail through Carolinian forest in the gorge below the falls, with the whirlpool rapids running green and white beside you. The stairs into the gorge are steep and can be icy &mdash; the rim path along the top is flat and gives you most of the view for none of the risk. Free.",c:["Local pick","Nature","Outdoor","Free"],g:["outdoor","nature","teen","cheap"]},
+   {t:"Niagara-on-the-Lake",d:"Twenty minutes north where the river meets Lake Ontario: one preserved 19th-century main street of clapboard shopfronts, still decorated well into January, with the lake at the end of it. The calm half of the day if the falls are overwhelming.",c:["Coach or car","Mixed","$","Easy pace"],g:["outdoor","indoor","easy","cheap"]}
   ],
   eat:[
-   {p:"$$",n:"Lady Marmalade",d:"Brunch done properly on the east side. Big portions, kid-tolerant, the right way to start a slow Sunday."},
-   {p:"$$",n:"Chubby's Jamaican Kitchen",d:"Jerk chicken, rum, a room that feels like a party. Mid-price, warm in every sense, and nothing on the menu is bland."},
-   {p:"$$$",n:"Miku",d:"Aburi sushi on the waterfront &mdash; flame-seared, and the best splurge dinner in Toronto that a mixed-age table will all enjoy. Book it."}
+   {p:"$$",n:"Elements on the Falls",d:"Inside Table Rock, with floor-to-ceiling glass looking straight down the brink of the Horseshoe. Book a window table; the food is fine and the view is the point."},
+   {p:"$",n:"Table Rock Market",d:"The food hall downstairs. Quick, warm, feeds nine without a reservation, and you are thirty seconds from the falls."},
+   {p:"$$",n:"The Old Winery Restaurant, Niagara-on-the-Lake",d:"Wood-fired pizza and Italian in a converted winery, comfortable with a big table, and the better dinner if you go north for the afternoon."}
   ]},
  {n:5,dow:"Monday",date:"28 Dec",title:"Toronto → Angus, and the car",
   transfer:true,
@@ -466,7 +478,8 @@ const DAYS=[
    {t:"The big shop, Barrie",d:"Costco on Mapleview or the Zehrs on Bayfield. Nine people, five nights, a kitchen: do one enormous grocery run now and you will not think about food again until New Year.",c:["Car","Indoor","$$"],g:["indoor","easy"]},
    {t:"Barrie waterfront, Kempenfelt Bay",d:"Centennial Park on the frozen bay &mdash; a short flat boardwalk, ice as far as you can see, then coffee. Twenty easy minutes that works for everyone including the stroller.",c:["Car","Outdoor","Free","Stroller OK","Easy pace"],g:["outdoor","stroller","easy","cheap"]},
    {t:"Legoland Discovery Centre, Vaughan",d:"A detour ten minutes off the 400 on the way out of the city. Indoor, aimed squarely at ages 3&ndash;10, so this is the nine-year-old's option &mdash; the teenager will not thank you.",c:["Car","Indoor","$$","Stroller OK"],g:["indoor","stroller","kid","easy"]},
-   {t:"Kortright Centre, Vaughan",d:"Ten minutes off the 400 and the right way to break the drive: 325 hectares of forest with boardwalks, a maple sugar bush and feeders that bring in chickadees close enough to land on your hand. An hour of easy walking before the last stretch north.",c:["Local pick","Car","Outdoor","$","Easy pace"],g:["outdoor","kid","easy","cheap"]}
+   {t:"Kortright Centre, Vaughan",d:"Ten minutes off the 400 and the right way to break the drive: 325 hectares of forest with boardwalks, a maple sugar bush and feeders that bring in chickadees close enough to land on your hand. An hour of easy walking before the last stretch north.",c:["Local pick","Car","Outdoor","$","Easy pace"],g:["outdoor","kid","easy","cheap"]},
+   {t:"Tiffin Conservation Area, Utopia",d:"Five minutes from the house: pine forest and a boardwalk along the Nottawasaga River, flat marked loops, and almost nobody there in winter. Free, and the gentlest possible first walk in the snow &mdash; you can turn back the moment the baby says so.",c:["Nature","Car 10 min","Outdoor","Free","Stroller OK","Easy pace"],g:["outdoor","nature","stroller","easy","cheap"]}
   ],
   eat:[
    {p:"$$",n:"Donaleigh's Irish Public House, Barrie",d:"Downtown Barrie, handles big groups, menu that covers a one-year-old and a grandfather without apologising. The most reliable lunch on this leg."},
@@ -485,7 +498,8 @@ const DAYS=[
    {t:"Blue Mountain Village",d:"An hour and ten west, and the easiest day of the whole trip for a group this mixed: a car-free alpine village with open-air skating, the Ridge Runner mountain coaster for the teenager, a gondola for the view, and cafés with fire pits for whoever just wants to sit down.",c:["Car 70 min","Mixed","$$","Stroller OK"],g:["outdoor","indoor","stroller","teen","easy"]},
    {t:"Scandinave Spa, Blue Mountain",d:"Outdoor Nordic baths in the falling snow with silence actually enforced. Strictly 19+, so it is the option for the two over-60s and whichever adults want three hours of nothing. Book ahead; it sells out over the holidays.",c:["Car 70 min","Outdoor","$$$","19+","Book ahead"],g:["outdoor","easy"]},
    {t:"Wasaga Beach in winter",d:"Thirty-five minutes north. The longest freshwater beach in the world, frozen, with the ice shoved into ridges along the shore. Twenty minutes of very strange, very photogenic walking, then back in the car.",c:["Car 35 min","Outdoor","Free","Easy pace"],g:["outdoor","easy","cheap"]},
-   {t:"Scenic Caves suspension bridge, Blue Mountain",d:"A 126-metre footbridge slung across the Niagara Escarpment, the longest in southern Ontario, with 25 km of frozen Georgian Bay laid out below. Snowshoe trails and caves in the rock at either end. Right beside the village, so it slots into the Blue Mountain day.",c:["Local pick","Car 70 min","Outdoor","$$"],g:["outdoor","teen","kid"]}
+   {t:"Scenic Caves suspension bridge, Blue Mountain",d:"A 126-metre footbridge slung across the Niagara Escarpment, the longest in southern Ontario, with 25 km of frozen Georgian Bay laid out below. Snowshoe trails and caves in the rock at either end. Right beside the village, so it slots into the Blue Mountain day.",c:["Local pick","Car 70 min","Outdoor","$$"],g:["outdoor","teen","kid"]},
+   {t:"The Georgian Trail",d:"A flat 32 km rail trail along Georgian Bay between Collingwood and Meaford, packed down and walkable all winter, with the frozen bay on one side and the escarpment on the other. Join it anywhere, walk as far as you feel like, turn around. Free.",c:["Nature","Car 50 min","Outdoor","Free","Stroller OK","Easy pace"],g:["outdoor","nature","stroller","easy","cheap"]}
   ],
   eat:[
    {p:"$$",n:"Oliver &amp; Bonacini Café Grill, Blue Mountain",d:"In the village. Reliable, mid-priced, and one of the few places up here that can actually seat nine without a fight."},
@@ -500,7 +514,8 @@ const DAYS=[
    {t:"Sunnidale Park toboggan hill, Barrie",d:"A free hill with no tickets, no time slots and no closing hour. Bring the sleds from Toronto. Two hours, and the only cost is hot chocolate afterwards.",c:["Car 20 min","Outdoor","Free"],g:["outdoor","kid","cheap"]},
    {t:"Simcoe County Museum",d:"The bad-weather answer: small, local, hands-on, scaled to a nine-year-old rather than to an adult. An hour and a half, warm, and ten minutes from the house.",c:["Car 15 min","Indoor","$","Stroller OK"],g:["indoor","stroller","kid","easy","cheap"]},
    {t:"MacLaren Art Centre, Barrie",d:"A small contemporary gallery in downtown Barrie, free to enter, and next to everywhere you would eat lunch. Forty-five minutes, and it costs nothing to walk out early.",c:["Car 20 min","Indoor","Free","Easy pace"],g:["indoor","easy","cheap"]},
-   {t:"Wye Marsh Wildlife Centre, Midland",d:"Fifty minutes north: groomed trails on boardwalks over a frozen marsh, resident trumpeter swans that were brought back from near-extinction here, and a heated visitor centre with owls and raptors when the cold wins. Snowshoe rental on site.",c:["Local pick","Car 50 min","Mixed","$$","Easy pace"],g:["outdoor","indoor","kid","easy"]}
+   {t:"Wye Marsh Wildlife Centre, Midland",d:"Fifty minutes north: groomed trails on boardwalks over a frozen marsh, resident trumpeter swans that were brought back from near-extinction here, and a heated visitor centre with owls and raptors when the cold wins. Snowshoe rental on site.",c:["Local pick","Car 50 min","Mixed","$$","Easy pace"],g:["outdoor","indoor","kid","easy"]},
+   {t:"Awenda Provincial Park",d:"Fifty-five minutes north at the tip of the peninsula: old-growth hardwood forest, four small lakes and a Georgian Bay shoreline locked in ice, with groomed trails and a heated day-use shelter. One of the loveliest places in Ontario in winter. Check winter access before driving out &mdash; services run reduced.",c:["Nature","Car 55 min","Outdoor","$","Easy pace"],g:["outdoor","nature","easy","cheap"]}
   ],
   eat:[
    {p:"$",n:"Cravings Fine Food, Barrie",d:"Deli counter and prepared food. Lunch in, or take a tray of it back to the house for tonight."},
@@ -515,7 +530,8 @@ const DAYS=[
    {t:"Scandinave Spa, afternoon",d:"The quiet version of New Year's Eve for whoever wants it. Three hours in outdoor thermal baths in the snow, then home in time for dinner. 19+, book ahead.",c:["Car 70 min","Outdoor","$$$","19+","Book ahead"],g:["outdoor","easy"]},
    {t:"Barrie's New Year's Eve downtown",d:"Barrie usually runs a family celebration on the waterfront with an early countdown for children and fireworks over Kempenfelt Bay. Confirm this year's programme closer to the date &mdash; when it runs, it is the right size for this group.",c:["Car 20 min","Outdoor","Free"],g:["outdoor","kid","cheap"]},
    {t:"Cook the New Year's dinner",d:"Nine people, one kitchen, a whole afternoon and nothing else to do. Genuinely the best plan available on 31 December in Simcoe County, and the only one that works with a one-year-old.",c:["At the house","Indoor","$"],g:["indoor","easy","cheap","stroller"]},
-   {t:"Ice fishing huts on Lake Simcoe",d:"Lake Simcoe is the ice-fishing capital of Ontario, and every January a temporary village of huts appears out on the ice off Innisfil. Operators drive you out, drill the holes and heat the hut &mdash; two or three hours, indoors-ish, and completely unlike anything at home. Book a hut ahead.",c:["Local pick","Car 35 min","Mixed","$$$","Book ahead"],g:["outdoor","indoor","teen","kid"]}
+   {t:"Ice fishing huts on Lake Simcoe",d:"Lake Simcoe is the ice-fishing capital of Ontario, and every January a temporary village of huts appears out on the ice off Innisfil. Operators drive you out, drill the holes and heat the hut &mdash; two or three hours, indoors-ish, and completely unlike anything at home. Book a hut ahead.",c:["Local pick","Car 35 min","Mixed","$$$","Book ahead"],g:["outdoor","indoor","teen","kid"]},
+   {t:"Fort Willow",d:"Ten minutes from the house: a boardwalk through wetland and pine forest on the site of a War of 1812 supply depot, with signs along a short flat loop. Free, quiet, forty-five minutes, and exactly the right size of outing for the morning of New Year&rsquo;s Eve.",c:["Nature","Car 10 min","Outdoor","Free","Stroller OK","Easy pace"],g:["outdoor","nature","stroller","easy","cheap"]}
   ],
   eat:[
    {p:"$$$",n:"Book it now or not at all",d:"Barrie restaurants take New Year's Eve reservations in November and run fixed menus. If you want to go out, this is a decision to make weeks before you fly."},
@@ -530,7 +546,8 @@ const DAYS=[
    {t:"The toboggan hill again",d:"Sunnidale Park, free, open, no schedule. The nine-year-old will happily do this for three hours, and the adults can take it in shifts from the car.",c:["Car 20 min","Outdoor","Free"],g:["outdoor","kid","cheap"]},
    {t:"Bowling or a film in Barrie",d:"Barrie Bowlerama and the Galaxy Cinema both run on New Year's Day when almost nothing else does. Indoor, warm, and it fills a grey afternoon with no planning at all.",c:["Car 20 min","Indoor","$$"],g:["indoor","kid","teen","easy"]},
    {t:"Pack, and nothing else",d:"Tomorrow is 650 km. Get the bags done today, plan the stops, fill the tank, and put the snacks where you can reach them from the driver's seat.",c:["At the house","Indoor","Free"],g:["indoor","easy","cheap","stroller"]},
-   {t:"Creemore village",d:"Twenty-five minutes west: one stone-and-brick main street from the 1880s, a well-known small brewery, a good bakery, and the smallest jail in North America &mdash; three cells built in 1892, still standing behind the town hall. The perfect scale of outing for the first of January.",c:["Local pick","Car 25 min","Mixed","$","Easy pace"],g:["outdoor","indoor","easy","cheap"]}
+   {t:"Creemore village",d:"Twenty-five minutes west: one stone-and-brick main street from the 1880s, a well-known small brewery, a good bakery, and the smallest jail in North America &mdash; three cells built in 1892, still standing behind the town hall. The perfect scale of outing for the first of January.",c:["Local pick","Car 25 min","Mixed","$","Easy pace"],g:["outdoor","indoor","easy","cheap"]},
+   {t:"Simcoe County Forest, Hendrie Tract",d:"Fifteen minutes away, inside one of the largest county forests in Ontario: dead-flat groomed lanes running between planted red pines standing in rows, with the snow muffling everything. Free, well marked, and about as calm as the first of January gets.",c:["Nature","Car 15 min","Outdoor","Free","Easy pace"],g:["outdoor","nature","easy","cheap"]}
   ],
   eat:[
    {p:"$",n:"Leftovers",d:"Whatever New Year's Eve produced. Almost every restaurant is closed or on short hours today."},
@@ -546,7 +563,8 @@ const DAYS=[
    {t:"Short stop: Port Hope or Cobourg",d:"About two hours in. Small Victorian main streets, a bakery, and somewhere to change the baby that is not a service-centre bathroom. Thirty minutes, and back on the road.",c:["Car","Mixed","$"],g:["indoor","stroller","easy","cheap"]},
    {t:"Upper Canada Village, Morrisburg",d:"Closer to the Québec border, roughly forty minutes off a straight run. Check the winter schedule before committing &mdash; it runs a reduced season, and only worth it if it is open.",c:["Car","Outdoor","$$"],g:["outdoor","kid"]},
    {t:"Arrive, drop the car, shop",d:"Return the rental in Montréal, get groceries near the apartment, and go to bed. From tomorrow you are on the métro and nobody has to drive again.",c:["Métro from here","Indoor","$$"],g:["indoor","easy","stroller"]},
-   {t:"The Thousand Islands Parkway",d:"A 37 km scenic road that leaves the 401 near Gananoque and runs along the St. Lawrence past the frozen channels and the islands, then rejoins the highway. It costs about twenty extra minutes and is the only genuinely beautiful stretch of this drive.",c:["Local pick","Car","Outdoor","Free","Easy pace"],g:["outdoor","easy","cheap"]}
+   {t:"The Thousand Islands Parkway",d:"A 37 km scenic road that leaves the 401 near Gananoque and runs along the St. Lawrence past the frozen channels and the islands, then rejoins the highway. It costs about twenty extra minutes and is the only genuinely beautiful stretch of this drive.",c:["Local pick","Car","Outdoor","Free","Easy pace"],g:["outdoor","easy","cheap"]},
+   {t:"Presqu&rsquo;ile Provincial Park",d:"Two hours in and ten minutes off the 401 at Brighton: a peninsula reaching into Lake Ontario with an 1840s lighthouse, a marsh boardwalk and ice shoved up along the shore. The best possible place to let everybody out of the car halfway through this drive.",c:["Nature","Car","Outdoor","$","Stroller OK","Easy pace"],g:["outdoor","nature","stroller","easy","cheap"]}
   ],
   eat:[
    {p:"$$",n:"Chez Piggy, Kingston",d:"In a courtyard off a limestone lane, running since 1979. Mid-price, seats groups, and by far the best food on the 401."},
@@ -566,7 +584,8 @@ const DAYS=[
    {t:"Skating at the Bonsecours Basin",d:"An outdoor rink in the Old Port with skate rental, a heated pavilion and the old city as the backdrop. Esplanade Tranquille downtown is the newer alternative, with a better warm-up building.",c:["Métro","Outdoor","$$"],g:["outdoor","kid","teen"]},
    {t:"Walk Old Montréal and Place Jacques-Cartier",d:"Narrow streets, stone warehouses, decorations still up well into January. Cobblestones are hard on a stroller and worse on ice &mdash; use the carrier, and keep it to an hour.",c:["Walk","Outdoor","Free"],g:["outdoor","cheap"]},
    {t:"The Underground City (RÉSO)",d:"The bad-weather escape hatch: 32&nbsp;km of connected tunnels, shops and food halls linking métro stations under downtown. Flat, warm, stroller heaven, and you can cross the centre without a coat.",c:["Métro","Indoor","Free","Stroller OK","Easy pace"],g:["indoor","stroller","easy","cheap"]},
-   {t:"The Sailors&rsquo; Church and its tower",d:"Notre-Dame-de-Bon-Secours, the small 1771 chapel at the end of the old town, hung inside with model ships left by sailors as thanks for safe crossings. Climb the tower for the best view over the Old Port &mdash; a few dollars, almost no queue, and most people walk straight past it.",c:["Local pick","Walk","Indoor","$"],g:["indoor","easy","cheap"]}
+   {t:"The Sailors&rsquo; Church and its tower",d:"Notre-Dame-de-Bon-Secours, the small 1771 chapel at the end of the old town, hung inside with model ships left by sailors as thanks for safe crossings. Climb the tower for the best view over the Old Port &mdash; a few dollars, almost no queue, and most people walk straight past it.",c:["Local pick","Walk","Indoor","$"],g:["indoor","easy","cheap"]},
+   {t:"Parc Jean-Drapeau",d:"One m&eacute;tro stop from the old town and you are on an island in the middle of the St. Lawrence: wide groomed paths through the trees, frozen river on both sides, and the whole skyline across the water. Free, flat, and the fastest escape from the city that exists here.",c:["Nature","M&eacute;tro","Outdoor","Free","Stroller OK","Easy pace"],g:["outdoor","nature","stroller","easy","cheap"]}
   ],
   eat:[
    {p:"$$",n:"Olive et Gourmando",d:"The Old Montréal breakfast and lunch institution. Tiny, so go early or take it away &mdash; nine people will not walk into a table at noon."},
@@ -581,7 +600,8 @@ const DAYS=[
    {t:"Kondiaronk Lookout",d:"The view of the whole city from the Mount Royal chalet terrace, and a short plowed walk from where the car drops you. Ten minutes of standing still, and the best photograph of the trip.",c:["Uber","Outdoor","Free","Easy pace"],g:["outdoor","easy","cheap"]},
    {t:"Olympic Stadium Tower",d:"The tallest inclined tower in the world, with a funicular that runs up the curve of it. Right beside the Biodôme, so it costs you nothing in travel &mdash; forty-five minutes, indoors at the top.",c:["Métro","Indoor","$$","Stroller OK"],g:["indoor","stroller","easy"]},
    {t:"Jean-Talon Market",d:"Smaller in January but the indoor section runs all winter: Québec cheeses, maple everything, charcuterie, produce. Métro Jean-Talon, and a good excuse to see a neighbourhood that is not downtown.",c:["Métro","Indoor","$$","Stroller OK"],g:["indoor","stroller","easy"]},
-   {t:"Saint Joseph&rsquo;s Oratory",d:"The largest church in Canada, on the far slope of Mount Royal, with a dome you can see from most of the city. Pilgrims climb the 283 wooden steps on their knees; there is a lift for everyone else. Free to enter, enormous, and the view from the terrace is the whole north of the island.",c:["Local pick","Métro + bus","Indoor","Free","Stroller OK","Easy pace"],g:["indoor","stroller","easy","cheap"]}
+   {t:"Saint Joseph&rsquo;s Oratory",d:"The largest church in Canada, on the far slope of Mount Royal, with a dome you can see from most of the city. Pilgrims climb the 283 wooden steps on their knees; there is a lift for everyone else. Free to enter, enormous, and the view from the terrace is the whole north of the island.",c:["Local pick","Métro + bus","Indoor","Free","Stroller OK","Easy pace"],g:["indoor","stroller","easy","cheap"]},
+   {t:"Parc La Fontaine",d:"The Plateau&rsquo;s park: tree-lined avenues, two linked ponds frozen over and turned into a skating rink with a heated chalet and rentals, and a bakery on every corner around it. Free to walk, a few dollars for skates, and it is where the neighbourhood actually spends its Sunday.",c:["Nature","M&eacute;tro","Outdoor","Free","Stroller OK","Easy pace"],g:["outdoor","nature","stroller","easy","cheap"]}
   ],
   eat:[
    {p:"$",n:"Schwartz's Deli",d:"Smoked meat since 1928, on the Main. There is always a line and the tables are communal &mdash; the takeaway counter next door is much faster for nine."},
@@ -597,7 +617,8 @@ const DAYS=[
    {t:"Montréal Museum of Fine Arts",d:"If the train is in the afternoon: five connected pavilions on Sherbrooke, warm, quiet, and easy to leave after an hour. Under-20s enter free.",c:["Métro","Indoor","$$","Stroller OK","Easy pace"],g:["indoor","stroller","easy"]},
    {t:"Load up at Marché Artisans",d:"The food hall inside Gare Centrale itself. Buy lunch for nine before you board rather than relying on the train &mdash; it is better, cheaper and faster.",c:["At the station","Indoor","$"],g:["indoor","easy","cheap","stroller"]},
    {t:"Arrive: Place Royale after dark",d:"Gare du Palais is ten uphill minutes or a five-minute taxi from Old Québec. Drop the bags and walk down to Place Royale in the dark &mdash; the Lower Town lit at night is the best first impression this city has, and it is free.",c:["Walk","Outdoor","Free"],g:["outdoor","cheap","easy"]},
-   {t:"The Plateau staircases",d:"Thirty minutes on foot around Rue Saint-Denis and the streets off it, looking at the wrought-iron exterior staircases that curl up the front of every duplex &mdash; a nineteenth-century tax dodge that turned into the signature of the city. Free, and the last real look at Montréal before the train.",c:["Local pick","Métro","Outdoor","Free"],g:["outdoor","cheap","easy"]}
+   {t:"The Plateau staircases",d:"Thirty minutes on foot around Rue Saint-Denis and the streets off it, looking at the wrought-iron exterior staircases that curl up the front of every duplex &mdash; a nineteenth-century tax dodge that turned into the signature of the city. Free, and the last real look at Montréal before the train.",c:["Local pick","Métro","Outdoor","Free"],g:["outdoor","cheap","easy"]},
+   {t:"Westmount Conservatory",d:"A small Victorian glasshouse beside the Westmount library, free to walk into, full of palms, ferns and orchids at tropical temperature with a park around it. Fifteen minutes from downtown, almost no tourists, and the warmest possible thing to do before a train.",c:["Nature","M&eacute;tro","Indoor","Free","Stroller OK","Easy pace"],g:["indoor","nature","stroller","easy","cheap"]}
   ],
   eat:[
    {p:"$",n:"Le Chic Shack, Québec",d:"Burgers, poutine and milkshakes right beside the Château. Casual, quick, and exactly what you want with tired children on arrival night."},
@@ -617,7 +638,8 @@ const DAYS=[
    {t:"Musée de la civilisation",d:"The best museum in the city and the most tolerant of children &mdash; big, warm, hands-on, with a permanent gallery on Québec itself. The obvious plan if the wind comes up off the river.",c:["Walk","Indoor","$$","Stroller OK","Easy pace"],g:["indoor","stroller","kid","easy"]},
    {t:"Skating at Place D'Youville",d:"A small outdoor rink just outside the city gate, with rentals on site. Twenty minutes from anywhere in the old town, and a good short thing to slot between two others.",c:["Walk","Outdoor","$"],g:["outdoor","kid","cheap"]},
    {t:"The city walls and the Citadelle",d:"You can walk a long stretch of the ramparts, and the Citadelle above them still houses an active regiment. Flat along the top, and it puts the whole geography of the place into one hour.",c:["Walk","Outdoor","$$"],g:["outdoor","easy"]},
-   {t:"The Morrin Centre",d:"A building that was a prison, then a college, and is now a Victorian English-language library with iron galleries and 20,000 books &mdash; with the original cells still in the basement. Guided tours, tiny, and one of the very few places inside the walls that tourists do not find.",c:["Local pick","Walk","Indoor","$$","Book ahead"],g:["indoor","teen","easy"]}
+   {t:"The Morrin Centre",d:"A building that was a prison, then a college, and is now a Victorian English-language library with iron galleries and 20,000 books &mdash; with the original cells still in the basement. Guided tours, tiny, and one of the very few places inside the walls that tourists do not find.",c:["Local pick","Walk","Indoor","$$","Book ahead"],g:["indoor","teen","easy"]},
+   {t:"Parc du Bois-de-Coulonge",d:"A former vice-regal estate on the cliff just west of the walls: enormous old trees, wide flat gravel avenues kept clear all winter, and the frozen St. Lawrence below. Free, ten minutes by taxi, and the quietest green space in the city.",c:["Nature","Taxi 10 min","Outdoor","Free","Stroller OK","Easy pace"],g:["outdoor","nature","stroller","easy","cheap"]}
   ],
   eat:[
    {p:"$",n:"Buffet de l'Antiquaire",d:"A genuine Québécois diner in the Lower Town &mdash; pâté chinois, tourtière, pouding chômeur. Cheap, tiny, packed with locals. Go early or split into two tables."},
@@ -632,7 +654,8 @@ const DAYS=[
    {t:"Montmorency Falls",d:"Twenty minutes east and 83 metres tall &mdash; higher than Niagara. In January it half-freezes and a huge cone of ice builds at the base. Take the cable car up rather than the 487 stairs, and walk the suspension bridge across the top.",c:["Taxi 20 min","Outdoor","$$","Easy pace"],g:["outdoor","easy"]},
    {t:"Plains of Abraham",d:"The battlefield park inside the city: flat, plowed, free, with sliding hills and groomed ski trails, fifteen minutes from anywhere in Old Québec. The low-effort snow option if nobody wants to get in a car.",c:["Walk","Outdoor","Free","Stroller OK","Easy pace"],g:["outdoor","stroller","easy","cheap"]},
    {t:"Île d'Orléans",d:"A rural island loop twenty minutes out &mdash; chocolatier, cider houses, blackcurrant liqueur, stone farmhouses, and the frozen river on both sides. Needs a taxi or a tour, and it is the calm counterpoint to a day of tubing.",c:["Taxi 25 min","Mixed","$$"],g:["outdoor","indoor","easy"]},
-   {t:"H&ocirc;tel de Glace",d:"The ice hotel, rebuilt from scratch every winter on the Valcartier site and carved into vaulted rooms, an ice chapel and a bar where the glasses are ice too. Kept at about &minus;5&nbsp;°C, so it is warmer inside than out. It usually opens in the first week of January &mdash; confirm the date before you count on it.",c:["Local pick","Taxi 30 min","Indoor","$$","Book ahead"],g:["indoor","teen","kid","easy"]}
+   {t:"H&ocirc;tel de Glace",d:"The ice hotel, rebuilt from scratch every winter on the Valcartier site and carved into vaulted rooms, an ice chapel and a bar where the glasses are ice too. Kept at about &minus;5&nbsp;°C, so it is warmer inside than out. It usually opens in the first week of January &mdash; confirm the date before you count on it.",c:["Local pick","Taxi 30 min","Indoor","$$","Book ahead"],g:["indoor","teen","kid","easy"]},
+   {t:"Parc national de la Jacques-Cartier",d:"Forty-five minutes north: a glacial valley with a frozen river along the floor and walls rising 550 metres either side. Marked snowshoe trails from the visitor centre, gear rented on site, and scenery that looks like nowhere else on this trip. Go in the morning and check conditions first.",c:["Nature","Taxi 45 min","Outdoor","$$","Book ahead"],g:["outdoor","nature","teen"]}
   ],
   eat:[
    {p:"$$",n:"La Buche",d:"Sugar-shack food taken seriously &mdash; maple, beans, pea soup, pouding chômeur, and servers who lean into it. Loud, warm and fun with children. Reserve for nine."},
@@ -649,7 +672,8 @@ const DAYS=[
    {t:"The afternoon train",d:"Gare du Palais to Gare Centrale, three and a quarter hours, arriving in Montréal in the early evening. Then straight to a hotel near YUL rather than back downtown.",c:["Train","Indoor","$$","Book ahead"],g:["indoor","stroller","easy"]},
    {t:"Time Out Market Montréal",d:"Sixteen counters from sixteen different kitchens in one downtown room. On a last night with nine opinions, everybody eats what they want and nobody negotiates a reservation.",c:["Métro","Indoor","$$"],g:["indoor","teen","easy","stroller"]},
    {t:"Repack and weigh the bags",d:"Winter coats are heavy and the maple syrup is heavier. Do this tonight, not at 5am, and check what Costa Rica allows you to bring in.",c:["At the hotel","Indoor","Free"],g:["indoor","easy","cheap","stroller"]},
-   {t:"Observatoire de la Capitale",d:"The 31st floor of the tallest building in the city, glassed in and heated, with 360 degrees over the old town, the river and the Laurentians. Ten minutes, no stairs, no cold &mdash; the cheapest way to see the whole geography of the place before you leave it.",c:["Local pick","Taxi","Indoor","$","Stroller OK","Easy pace"],g:["indoor","stroller","easy","cheap"]}
+   {t:"Observatoire de la Capitale",d:"The 31st floor of the tallest building in the city, glassed in and heated, with 360 degrees over the old town, the river and the Laurentians. Ten minutes, no stairs, no cold &mdash; the cheapest way to see the whole geography of the place before you leave it.",c:["Local pick","Taxi","Indoor","$","Stroller OK","Easy pace"],g:["indoor","stroller","easy","cheap"]},
+   {t:"Domaine de Maizerets",d:"A heritage estate ten minutes from the old town with an arboretum of several hundred tree species, flat groomed paths, a skating loop that winds through the trees and a small heated pavilion. Free, calm, and an easy last morning that asks nothing of anyone.",c:["Nature","Taxi 10 min","Outdoor","Free","Stroller OK","Easy pace"],g:["outdoor","nature","stroller","easy","cheap"]}
   ],
   eat:[
    {p:"$$",n:"Time Out Market Montréal",d:"The easiest good dinner in the city for a group that cannot agree. Downtown, open late, no booking."},
@@ -663,7 +687,8 @@ const DAYS=[
    {t:"Leave a margin, not a plan",d:"Three hours for an international flight, and add time for nine people plus a stroller through security. Check in online the night before and put the passports in one bag with one person.",c:["Airport","Indoor","&mdash;"],g:["indoor","easy","stroller"]},
    {t:"Last-minute maple",d:"If you did not buy it in Québec, a supermarket near the hotel is still cheaper than the terminal. Syrup travels fine in checked luggage &mdash; wrap it.",c:["Walk","Indoor","$"],g:["indoor","easy","cheap"]},
    {t:"Keep the layers on until you board",d:"It is going to be thirty degrees when the doors open at the other end. Wear the heavy coat rather than pack it, and strip on the plane.",c:["&mdash;","&mdash;","Free"],g:["easy","cheap","indoor"]},
-   {t:"March&eacute; Atwater on the way out",d:"A 1933 art-deco market hall with a clock tower, ten minutes off the road to the airport. Québec cheeses, maple, charcuterie and the good syrup at half what the terminal charges. Twenty minutes, and it is a far better last impression of Canada than a departures hall.",c:["Local pick","Métro","Indoor","$$","Stroller OK"],g:["indoor","stroller","easy"]}
+   {t:"March&eacute; Atwater on the way out",d:"A 1933 art-deco market hall with a clock tower, ten minutes off the road to the airport. Québec cheeses, maple, charcuterie and the good syrup at half what the terminal charges. Twenty minutes, and it is a far better last impression of Canada than a departures hall.",c:["Local pick","Métro","Indoor","$$","Stroller OK"],g:["indoor","stroller","easy"]},
+   {t:"The Lachine Canal at Atwater",d:"Twenty minutes on the flat path beside the frozen canal, right where the market is. Old locks, industrial brick, and geese that never bothered leaving. The last outdoor air of the trip, and it costs nothing.",c:["Nature","M&eacute;tro","Outdoor","Free","Stroller OK","Easy pace"],g:["outdoor","nature","stroller","easy","cheap"]}
   ],
   eat:[
    {p:"$",n:"Breakfast at the hotel",d:"Take it, whatever it is. The next real meal is a long way off."},
@@ -686,6 +711,7 @@ function save(){try{localStorage.setItem("fsn.picks",JSON.stringify(picks))}catc
 function chipCls(t){
   const s=t.toLowerCase();
   if(s==="local pick")return"chip local";
+  if(s==="nature")return"chip nature";
   if(/book ahead|closes early|19\+/.test(s))return"chip book";
   if(/subway|métro|uber|car|walk|train|taxi|streetcar|station|house|hotel|airport|funicular|from here/.test(s))return"chip mode";
   return"chip";
@@ -753,6 +779,7 @@ document.getElementById("nav").innerHTML=
   DAYS.map(L=>`<a class="jump" data-leg="${L.leg}" href="#${L.leg}" style="--jc:var(${LEGMETA[L.leg].col})"><i></i>${L.city}</a>`).join("")
   +`<span class="navsep"></span>`
   +`<button class="filt" data-f="local" aria-pressed="false">Local picks</button>`
+  +`<button class="filt" data-f="nature" aria-pressed="false">Parks &amp; forests</button>`
   +`<button class="filt" data-f="indoor" aria-pressed="false">Indoor</button>`
   +`<button class="filt" data-f="stroller" aria-pressed="false">Stroller &amp; easy</button>`
   +`<button class="filt" data-f="cheap" aria-pressed="false">Free / cheap</button>`
