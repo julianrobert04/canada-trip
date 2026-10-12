@@ -296,6 +296,29 @@ td b{color:var(--ink)}
 .blinks li{font-family:var(--serif);font-size:14px;line-height:1.55;color:var(--ink-2);max-width:62ch}
 .blinks a{font-family:var(--sans);font-size:13.5px;font-weight:700;color:var(--leg);
   text-decoration:underline;text-underline-offset:2px;display:block;letter-spacing:-.005em;margin-bottom:2px}
+
+/* --- shared picks --- */
+.idbtn{flex:0 0 auto;display:flex;align-items:center;gap:7px;font:700 11px/1 var(--sans);
+  font-variation-settings:var(--cond);letter-spacing:.14em;text-transform:uppercase;padding:8px 12px;
+  border-radius:3px;border:1px solid var(--line);background:var(--surface);color:var(--ink-3);cursor:pointer}
+.idbtn:hover{color:var(--ink);border-color:var(--ink-3)}
+.idbtn .dot{width:7px;height:7px;border-radius:50%;background:var(--ink-3);flex:0 0 auto}
+.idbtn.on .dot{background:#2EA86A}
+.idbtn.off .dot{background:var(--warn)}
+.nameform{display:flex;gap:6px;align-items:center}
+.nameform input{font:600 12px/1 var(--sans);padding:7px 9px;border-radius:3px;border:1px solid var(--line);
+  background:var(--surface);color:var(--ink);width:150px}
+.nameform button{font:700 10px/1 var(--sans);font-variation-settings:var(--cond);letter-spacing:.14em;
+  text-transform:uppercase;padding:8px 10px;border-radius:3px;border:1px solid var(--ink);
+  background:var(--ink);color:var(--paper);cursor:pointer}
+.who{display:flex;flex-wrap:wrap;gap:4px;margin-top:9px;align-items:center}
+.who:empty{display:none}
+.bub{width:21px;height:21px;border-radius:50%;display:grid;place-items:center;
+  font:800 9px/1 var(--sans);color:#fff;letter-spacing:.02em;cursor:default;
+  box-shadow:0 0 0 1.5px var(--surface)}
+.who .lbl{font:700 9.5px/1 var(--sans);font-variation-settings:var(--cond);letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);margin-right:2px}
+.synced{font-family:var(--serif);font-size:13px;color:var(--ink-3);line-height:1.5}
 footer{padding:44px 0 68px;font-family:var(--serif);font-size:14px;color:var(--ink-3);line-height:1.65;max-width:62ch}
 
 @media (max-width:760px){
@@ -1151,7 +1174,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 
 <footer class="wrap">
-  <p>Prices are Canadian dollars and approximate; temperatures are typical seasonal ranges, not forecasts. Every day carries one <em>Local pick</em> &mdash; the offbeat sight locals would send you to rather than the headline attraction; the filter up top pulls all seventeen into one list. <em>Parks &amp; forests</em> does the same for the green, flat, safe options &mdash; there is at least one every day. Tap the square beside anything you want to do and it stays marked on this device &mdash; the <em>Picked</em> filter then shows just your shortlist.</p>
+  <p>Prices are Canadian dollars and approximate; temperatures are typical seasonal ranges, not forecasts. Every day carries one <em>Local pick</em> &mdash; the offbeat sight locals would send you to rather than the headline attraction; the filter up top pulls all seventeen into one list. <em>Parks &amp; forests</em> does the same for the green, flat, safe options &mdash; there is at least one every day. Tap the square beside anything you want to do. Set your name in the bar above and your picks are shared live with everyone else looking at this page &mdash; their initials appear beside whatever they have chosen &mdash; the <em>Picked</em> filter then shows just your shortlist.</p>
 </footer>
 
 <script>
@@ -1216,6 +1239,7 @@ main.innerHTML=DAYS.map((L,li)=>{
               <h4>${o.t}</h4>
               <p>${o.d}</p>
               <div class="chips">${o.c.map(c=>`<span class="${chipCls(c)}">${c}</span>`).join("")}</div>
+              <div class="who" data-who="${id}"></div>
             </div>
             <button class="pick" data-id="${id}" aria-pressed="${picks[id]?"true":"false"}" aria-label="Shortlist ${o.t.replace(/"/g,"")}">${picks[id]?"✓":"+"}</button>
           </div>`;
@@ -1249,7 +1273,9 @@ document.getElementById("nav").innerHTML=
   +`<button class="filt" data-f="indoor" aria-pressed="false">Indoor</button>`
   +`<button class="filt" data-f="stroller" aria-pressed="false">Stroller &amp; easy</button>`
   +`<button class="filt" data-f="cheap" aria-pressed="false">Free / cheap</button>`
-  +`<button class="filt" data-f="picked" aria-pressed="false">Picked <span id="pc"></span></button>`;
+  +`<button class="filt" data-f="picked" aria-pressed="false">Picked <span id="pc"></span></button>`
+  +`<span class="navsep"></span>`
+  +`<button class="idbtn" id="idbtn"></button>`;
 
 function count(){
   const n=Object.values(picks).filter(Boolean).length;
@@ -1264,7 +1290,7 @@ document.addEventListener("click",e=>{
     picks[id]=!picks[id];
     b.setAttribute("aria-pressed",picks[id]?"true":"false");
     b.textContent=picks[id]?"✓":"+";
-    save();count();apply();
+    save();count();apply();pushMine();
     return;
   }
   const mt=e.target.closest(".mtog");
@@ -1327,6 +1353,114 @@ function stayBlock(d){
   return `<div class="stay"><h5>Where to sleep &mdash; 8 January</h5>${grps}
     <p class="staynote">${d.stay.note}</p></div>`;
 }
+
+
+/* ---------- shared picks, live ---------- */
+const DB="https://canada-trip-10b84-default-rtdb.firebaseio.com";
+let me={id:"",name:""}, everyone={}, online=false, es=null, pushTimer=null;
+try{ me=JSON.parse(localStorage.getItem("fsn.me")||"null")||me; }catch(e){}
+if(!me.id){ me.id="p"+Math.random().toString(36).slice(2,10); saveMe(); }
+function saveMe(){ try{ localStorage.setItem("fsn.me",JSON.stringify(me)); }catch(e){} }
+
+function hue(s){ let h=0; for(let i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))%360; return h; }
+function initials(n){
+  const p=n.trim().split(/\s+/).filter(Boolean);
+  return ((p[0]||"?")[0]+(p[1]?p[1][0]:"")).toUpperCase();
+}
+function myItems(){ return Object.keys(picks).filter(k=>picks[k]); }
+
+function pushMine(){
+  if(!me.name) return;
+  clearTimeout(pushTimer);
+  pushTimer=setTimeout(()=>{
+    fetch(DB+"/picks/"+me.id+".json",{method:"PUT",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({name:me.name.slice(0,40),items:myItems().join(","),updated:Date.now()})
+    }).catch(()=>{});
+  },400);
+}
+
+function applyPut(m){
+  if(!m) return;
+  const p=(m.path||"/").replace(/^\/+|\/+$/g,"");
+  if(p===""){ everyone=m.data||{}; }
+  else{
+    const k=p.split("/")[0];
+    if(m.data===null && p===k) delete everyone[k];
+    else if(p===k) everyone[k]=m.data;
+    else { everyone[k]=everyone[k]||{}; everyone[k][p.split("/")[1]]=m.data; }
+  }
+  paintWho();
+}
+function applyPatch(m){
+  if(!m) return;
+  const p=(m.path||"/").replace(/^\/+|\/+$/g,"");
+  if(p===""){ Object.assign(everyone,m.data||{}); }
+  else { everyone[p]=Object.assign(everyone[p]||{},m.data||{}); }
+  paintWho();
+}
+
+function connect(){
+  if(typeof EventSource==="undefined"){ setStatus(false); return; }
+  try{ es=new EventSource(DB+"/picks.json"); }catch(e){ setStatus(false); return; }
+  es.addEventListener("put",e=>{ setStatus(true); try{applyPut(JSON.parse(e.data));}catch(x){} });
+  es.addEventListener("patch",e=>{ setStatus(true); try{applyPatch(JSON.parse(e.data));}catch(x){} });
+  es.addEventListener("keep-alive",()=>setStatus(true));
+  es.onopen=()=>{ const was=online; setStatus(true); if(!was&&me.name) pushMine(); };  /* flush anything picked while offline */
+  es.onerror=()=>setStatus(false);   /* EventSource reconnects on its own */
+}
+function setStatus(ok){ if(online!==ok){ online=ok; paintId(); } }
+
+function paintWho(){
+  const by={};
+  Object.entries(everyone).forEach(([id,rec])=>{
+    if(!rec||typeof rec.items!=="string"||!rec.name) return;
+    if(id===me.id) return;                        /* your own picks are the filled square */
+    rec.items.split(",").filter(Boolean).forEach(it=>{ (by[it]=by[it]||[]).push(rec.name); });
+  });
+  document.querySelectorAll(".who").forEach(el=>{
+    const names=by[el.dataset.who]||[];
+    if(!names.length){ el.innerHTML=""; return; }
+    el.innerHTML='<span class="lbl">also</span>'+names.slice(0,8).map(n=>
+      `<span class="bub" style="background:hsl(${hue(n)} 52% 42%)" title="${n.replace(/"/g,"")}">${initials(n)}</span>`
+    ).join("");
+  });
+  paintId();
+}
+
+function paintId(){
+  const b=document.getElementById("idbtn"); if(!b) return;
+  const others=Object.values(everyone).filter(r=>r&&r.name&&r.id!==me.id).length;
+  const n=Object.keys(everyone).filter(k=>k!==me.id&&everyone[k]&&everyone[k].name).length;
+  b.className="idbtn "+(online?"on":"off");
+  b.innerHTML='<span class="dot"></span>'+(me.name
+    ? me.name+(n?" + "+n:"")
+    : "Set your name");
+  b.title=online?(n?n+" other"+(n===1?"":"s")+" sharing picks":"Connected — nobody else yet")
+                :"Offline — picks saved on this device";
+}
+
+function askName(){
+  const b=document.getElementById("idbtn"); if(!b) return;
+  const wrap=document.createElement("span");
+  wrap.className="nameform";
+  wrap.innerHTML='<input maxlength="40" placeholder="Your name" value="'+(me.name||"").replace(/"/g,"")+'"><button>Save</button>';
+  b.replaceWith(wrap);
+  const inp=wrap.querySelector("input"), btn=wrap.querySelector("button");
+  inp.focus(); inp.select();
+  const done=()=>{
+    me.name=inp.value.trim().slice(0,40); saveMe();
+    const nb=document.createElement("button");
+    nb.id="idbtn"; nb.className="idbtn"; wrap.replaceWith(nb);
+    paintId(); if(me.name) pushMine();
+  };
+  btn.onclick=done;
+  inp.onkeydown=e=>{ if(e.key==="Enter")done(); if(e.key==="Escape"){ const nb=document.createElement("button"); nb.id="idbtn"; nb.className="idbtn"; wrap.replaceWith(nb); paintId(); } };
+}
+
+document.addEventListener("click",e=>{ if(e.target.closest("#idbtn")) askName(); });
+paintId();
+connect();
+if(me.name) pushMine();
 
 /* ---------- maps & distances ---------- */
 function km(a,b){
