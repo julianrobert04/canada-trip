@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "picks": {
+      ".read": true,
+      ".write": true,
+      "$person": {
+        ".validate": "newData.hasChildren(['name','items','updated'])",
+        "name": { ".validate": "newData.isString() && newData.val().length <= 40" },
+        "items": { ".validate": "newData.isString() && newData.val().length <= 4000" },
+        "updated": { ".validate": "newData.isNumber()" }
+      }
+    }
+  }
+}

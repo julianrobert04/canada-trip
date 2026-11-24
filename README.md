@@ -1,72 +1,59 @@
 # Four Stops North
 
-Family trip site — Toronto · Angus · Montréal · Québec, 24 Dec 2026 – 9 Jan 2027.
+Family trip site — Toronto · Niagara · Angus · Montréal · Québec,
+24 December 2026 – 9 January 2027. Nine people, one rental car.
+
+**Live:** https://julianrobert04.github.io/canada-trip/
 
 ## Files
 
-- `index.html` — the whole site. One self-contained file, no build step, no dependencies.
-- `og.png` — 1200×630 link-preview card (WhatsApp, iMessage, Facebook, Twitter).
-- `README.md` — this.
+- `index.html` — the whole site. One self-contained file, no build step.
+- `img/` — photos, one set of three per day, from Wikimedia Commons.
+- `og.png` — 1200×630 link-preview card.
 
-## Before going live
+## How it is put together
 
-Open `index.html` and replace every `https://REPLACE-WITH-YOUR-DOMAIN`
-with the real address. It appears 5 times, all inside `<head>`.
+The itinerary lives in the `DAYS` array near the top of the `<script>`
+block at the bottom of `index.html`. Each day is an object:
 
-```bash
-cd ~/canada-trip
-sed -i '' 's|https://REPLACE-WITH-YOUR-DOMAIN|https://julianrobert04.github.io/canada-trip|g' index.html
-```
+| key | what it is |
+|---|---|
+| `opts` | the activity options, each with chips and a map pin (`ll`) |
+| `eat`  | five restaurants |
+| `shots`| three photos with caption, author and licence |
+| `book` | optional booking panel — table, note, links |
+| `stay` | optional hotel panel (day 16 only) |
 
-Only the link-preview card and the canonical URL depend on this. The site
-itself works without it.
+Edit, save, commit, push. GitHub Pages redeploys in under a minute.
 
-## To keep it out of Google
+## Shared voting
 
-Add this inside `<head>`:
+Picks sync live between everyone looking at the page, through a Firebase
+Realtime Database. There is **no Firebase SDK** — the database's REST
+endpoint streams over `EventSource`, so the page loads no extra library.
 
-```html
-<meta name="robots" content="noindex, nofollow">
-```
+- Database: `https://canada-trip-10b84-default-rtdb.firebaseio.com`
+- Data shape: `/picks/{personId} = {name, items, updated}`
+- `items` is a comma-separated list of `"{day}-{optionIndex}"`
 
-The page is still reachable by anyone with the link — this only stops it
-being indexed and found by search.
+The Firebase web config in `index.html` is public by design; security
+comes from the database rules, which are scoped to `/picks` only and
+reproduced in `firebase-rules.json` in this repo. If the rules are ever
+lost, paste that file back into the Realtime Database → Rules tab.
+
+The page works without the database: if it is unreachable the status dot
+turns amber and picks save locally instead.
+
+## Photos
+
+Sourced from Wikimedia Commons under their respective free licences,
+downsized to 760 px wide. Author and licence are credited under each
+day's strip. To swap one, replace the file in `img/` and update the
+matching entry in that day's `shots` array.
 
 ## Deploying
 
-Any static host works. The whole site is two files.
+Nothing to build. Commit and push to `main`; GitHub Pages serves it.
 
-### GitHub Pages
-```bash
-cd ~/canada-trip
-git init && git add -A && git commit -m "Four Stops North"
-gh repo create canada-trip --public --source=. --push
-gh api -X POST repos/:owner/canada-trip/pages -f "source[branch]=main" -f "source[path]=/"
-```
-Live at `https://<user>.github.io/canada-trip/` in about a minute.
-Note: Pages from a **private** repo needs a paid GitHub plan.
-
-### Cloudflare Pages
-Connect the repo at dash.cloudflare.com → Workers & Pages → Create → Pages.
-Build command: leave empty. Output directory: `/`.
-
-### Netlify
-Drag this folder onto https://app.netlify.com/drop. No account needed to start.
-
-## Custom domain
-
-Buy the domain (Cloudflare Registrar is at-cost, ~$10–12/yr), then:
-
-- **GitHub Pages** — add the domain under repo Settings → Pages, create a
-  `CNAME` file containing the domain, and point a DNS `CNAME` record at
-  `<user>.github.io`.
-- **Cloudflare Pages / Netlify** — add the domain in their dashboard and
-  follow the DNS instructions they generate.
-
-HTTPS is automatic and free on all three.
-
-## Editing later
-
-It is one HTML file. The itinerary lives in the `DAYS` array near the top of
-the `<script>` block at the bottom — each day is an object with `opts`
-(the activity options) and `eat` (the restaurants). Edit, save, redeploy.
+The page is `noindex, nofollow` — unlisted, not private. Anyone with the
+link can open it; search engines will not list it.
